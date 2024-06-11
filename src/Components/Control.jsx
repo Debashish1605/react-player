@@ -93,7 +93,6 @@ const Control = ({
   return (
     <div className="control_Container" ref ={controlRef}>
       <div className="top_container">
-        <h2>Video PLayer</h2>
       </div>
       <div className="mid__container">
         <div className="icon__btn" onDoubleClick={onRewind}>

@@ -129,7 +129,7 @@ function App() {
           <ReactPlayer
             ref={videoPlayerRef}
             className="player"
-            url="https://bucket-viewer.s3.amazonaws.com/viewer1664370329252.mp4"
+            url="https://www.youtube.com/watch?v=s19BxFpoSd0=&t=21s&end"
             width="100%"
             height="100%"
             playing={playing}
