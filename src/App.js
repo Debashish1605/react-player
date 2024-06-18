@@ -5,13 +5,12 @@ import Control from "./Components/Control";
 import { useState, useRef } from "react";
 import { formatTime } from "./format";
 
-let count = 0;
-function App() {
+const App = () => {
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
 
   const [videoState, setVideoState] = useState({
-    playing: true,
+    playing: false,
     muted: false,
     volume: 0.5,
     playbackRate: 1.0,
@@ -20,42 +19,37 @@ function App() {
     buffer: true,
   });
 
-  //Destructuring the properties from the videoState
-  const { playing, muted, volume, playbackRate, played, seeking, buffer } =
-    videoState;
+  const [count, setCount] = useState(0); // Define count as a state variable
 
-  const currentTime = videoPlayerRef.current
-    ? videoPlayerRef.current.getCurrentTime()
-    : "00:00";
-  const duration = videoPlayerRef.current
-    ? videoPlayerRef.current.getDuration()
-    : "00:00";
+  // Destructuring the properties from the videoState
+  const { playing, muted, volume, playbackRate, played, seeking, buffer } = videoState;
+
+  const currentTime = videoPlayerRef.current ? videoPlayerRef.current.getCurrentTime() : '00:00';
+  const duration = videoPlayerRef.current ? videoPlayerRef.current.getDuration() : '00:00';
 
   const formatCurrentTime = formatTime(currentTime);
   const formatDuration = formatTime(duration);
 
   const playPauseHandler = () => {
-    //plays and pause the video (toggling)
+    // Plays and pause the video (toggling)
     setVideoState({ ...videoState, playing: !videoState.playing });
   };
 
   const rewindHandler = () => {
-    //Rewinds the video player reducing 5
+    // Rewinds the video player reducing 5
     videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() - 5);
   };
 
   const handleFastFoward = () => {
-    //FastFowards the video player by adding 10
+    // FastForwards the video player by adding 10
     videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
   };
 
-  //console.log("========", (controlRef.current.style.visibility = "false"));
   const progressHandler = (state) => {
     if (count > 3) {
-      console.log("close");
-      controlRef.current.style.visibility = "hidden"; // toggling player control container
+      controlRef.current.style.visibility = "hidden"; // Toggling player control container
     } else if (controlRef.current.style.visibility === "visible") {
-      count += 1;
+      setCount(count + 1); // Update count
     }
 
     if (!seeking) {
@@ -69,8 +63,6 @@ function App() {
   };
 
   const seekMouseUpHandler = (e, value) => {
-    console.log(value);
-
     setVideoState({ ...videoState, seeking: false });
     videoPlayerRef.current.seekTo(value / 100);
   };
@@ -96,7 +88,7 @@ function App() {
   };
 
   const muteHandler = () => {
-    //Mutes the video player
+    // Mutes the video player
     setVideoState({ ...videoState, muted: !videoState.muted });
   };
 
@@ -106,16 +98,14 @@ function App() {
 
   const mouseMoveHandler = () => {
     controlRef.current.style.visibility = "visible";
-    count = 0;
+    setCount(0); // Reset count
   };
 
   const bufferStartHandler = () => {
-    console.log("Bufering.......");
     setVideoState({ ...videoState, buffer: true });
   };
 
   const bufferEndHandler = () => {
-    console.log("buffering stoped ,,,,,,play");
     setVideoState({ ...videoState, buffer: false });
   };
 
@@ -129,7 +119,7 @@ function App() {
           <ReactPlayer
             ref={videoPlayerRef}
             className="player"
-            url="https://www.youtube.com/watch?v=s19BxFpoSd0=&t=21s&end"
+            url="https://www.youtube.com/watch?v=jmVPLwjm_zs"
             width="100%"
             height="100%"
             playing={playing}

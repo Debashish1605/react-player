@@ -94,23 +94,7 @@ const Control = ({
     <div className="control_Container" ref ={controlRef}>
       <div className="top_container">
       </div>
-      <div className="mid__container">
-        <div className="icon__btn" onDoubleClick={onRewind}>
-          <FastRewind fontSize="medium" />
-        </div>
 
-        <div className="icon__btn" onClick={onPlayPause}>
-          {playing ? (
-            <Pause fontSize="medium" />
-          ) : (
-            <PlayArrow fontSize="medium" />
-          )}{" "}
-        </div>
-
-        <div className="icon__btn">
-          <FastForward fontSize="medium" onDoubleClick={onForward} />
-        </div>
-      </div>
       <div className="bottom__container">
         <div className="slider__container">
           <PrettoSlider
@@ -151,7 +135,7 @@ const Control = ({
               onChangeCommitted={onVolumeSeekUp}
             />
 
-            <span>{ currentTime} : {duration}</span>
+            <span style={{marginLeft: "70%"}}>{ currentTime} : {duration}</span>
           </div>
           
         </div>
