@@ -2,7 +2,7 @@ import "./App.css";
 import ReactPlayer from "react-player";
 import { Container } from "@material-ui/core";
 import Control from "./Components/Control";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { formatTime } from "./format";
 
 const App = () => {
@@ -108,6 +108,22 @@ const App = () => {
   const bufferEndHandler = () => {
     setVideoState({ ...videoState, buffer: false });
   };
+
+  // Add event listener for spacebar key press
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault(); // Prevent default spacebar behavior (like scrolling)
+        playPauseHandler();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [videoState.playing]);
 
   return (
     <div className="video_container">
