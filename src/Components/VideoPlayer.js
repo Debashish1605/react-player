@@ -133,7 +133,7 @@ const VideoPlayer = ({ url }) => {
             className="player"
             url={url}
             width="100%"
-            height="100%"
+            height="20%"
             playing={playing}
             volume={volume}
             muted={muted}
@@ -142,7 +142,7 @@ const VideoPlayer = ({ url }) => {
             onBufferEnd={bufferEndHandler}
           />
 
-          {buffer && <p>Loading</p>}
+          {/* {buffer && <p>Loading</p>} */}
 
           <Control
             controlRef={controlRef}

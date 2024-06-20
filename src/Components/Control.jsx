@@ -37,21 +37,21 @@ const useStyles = makeStyles({
 
 const PrettoSlider = withStyles({
   root: {
-    height: "20px",
-    color: "#9556CC",
+    height: 4,
+    color: "#FF0000", // YouTube's red color for the track
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
   thumb: {
-    height: 20,
-    width: 20,
-    backgroundColor: "#9556CC",
-    border: "2px solid currentColor",
+    height: 16,
+    width: 16,
+    backgroundColor: "#606060", // Gray color for the thumb
+    border: "2px solid #FFFFFF", // White border around the thumb
     marginTop: -3,
-    marginLeft: -12,
+    marginLeft: -8,
     "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
+      boxShadow: "0 0 5px rgba(0, 0, 0, 0.8)",
     },
   },
   active: {},
@@ -62,10 +62,13 @@ const PrettoSlider = withStyles({
     height: 5,
     borderRadius: 4,
     width: "100%",
+    backgroundColor: "#0000FF",
+    marginLeft: 0,
   },
   rail: {
     height: 5,
     borderRadius: 4,
+    color: "#000000",
   },
 })(Slider);
 
